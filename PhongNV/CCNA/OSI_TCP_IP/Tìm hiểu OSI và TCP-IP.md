@@ -8,49 +8,49 @@
 	- Bảo đảm liên kết cho nhiều hệ thống mạng khác nhau 
 	- Thích ứng với nhu cầu phát triển các công nghệ mới trong tương lai
 
-	![ima](./layers.png.png)	
+	![ima](IMG_OSI_TCP/layers.png.png)	
 ## **Chức năng các tầng trong mô hình OSI**
 ### **Tầng Vật Lí**
 * 	Thực hiện các nhiệm vụ truyền dòng bit phi cấu trúc qua đường truyền vật lý, truy nhập đường truyền vật lý nhờ các phương tiện cơ, điện, quang…
-![ima](./physical.png)
+![ima](IMG_OSI_TCP/physical.png)
 ### **Tầng dữ liệu**
 * Cung cấp các phương tiện để truyền thông tin qua liên kết vật lý đảm bảo tin cậy; gửi các khối dữ liệu, kiểm soát lỗi và luồng dữ liệu khi cần thiết.
-![ima](./DataLink.png)
+![ima](IMG_OSI_TCP/DataLink.png)
 ### **Tầng mạng( Network layer)**
 * Thực hiện việc chọn đường và chuyển tiếp gói tin với công nghệ chuyển mạch thích hợp kiểm soát luồng dữ liệu và cắt/ hợp dữ liệu nếu cần.
-![ima](./Network.png)
+![ima](IMG_OSI_TCP/Network.png)
 ### **Tầng vận chuyển( Transport layer)**
 * Thực hiện truyền dữ liệu giữa 2 đầu mút, kiểm soát lỗi, kiểm soát luồng dữ liệu giữa 2 đầu mút, việc ghép kênh cắt/hợp dữ liệu nếu cần.
-![ima](./Transport_OSI.png)
+![ima](IMG_OSI_TCP/Transport_OSI.png)
 ### **Tầng phiên( session layer)**
 * Cung cấp các phương tiện quản lý truyền thông giữa các ứng dụng, thiết lập, duy trì , đồng bộ hóa, hủy bỏ các phiên truyền thông giữa các ứng dụng.
-![ima](./session.png)
+![ima](IMG_OSI_TCP/session.png)
 ### **Tầng trình bày( presentation layer)**
 * Chuyển đổi cú pháp dữ liệu để đáp ứng yêu cầu truyền dữ liệu của các ứng dụng qua môi trường OSI
-![ima](./Presentation.png)
+![ima](IMG_OSI_TCP/Presentation.png)
 ### **Tầng ứng dụng( application layer)**
 * Cung cấp các phương tiện để người sử dụng có thể truy cập được vào môi trường OSI, đồng thời cung cấp các dịch vụ thông tin phân tán
-![ima](./Application_OSI.png)
+![ima](IMG_OSI_TCP/Application_OSI.png)
 
 # **Mô hình TCP/IP**
 ## **Khái niệm**
 * TCP/ IP (Transmission Control Protocol/ Internet Protocol - Giao thức điều khiển truyền nhận/ Giao thức liên mạng), là một bộ giao thức trao đổi thông tin được sử dụng để truyền tải và kết nối các thiết bị trong mạng Internet. TCP/IP được phát triển để mạng được tin cậy hơn cùng với khả năng phục hồi tự động.
 * Một mô hình TCP/IP tiêu chuẩn bao gồm 4 lớp được chồng lên nhau, bắt đầu từ tầng thấp nhất là Tầng vật lý (Physical) → Tầng mạng (Network) → Tầng giao vận (Transport) và cuối cùng là Tầng ứng dụng (Application).
-![ima](./TCP_IP.png)
+![ima](IMG_OSI_TCP/TCP_IP.png)
 ## **Chức năng các tầng trong mô hình TCP/IP**
 ### **Tầng vật lí**
 * Là sự kết hợp giữa tầng Vật lý và tầng liên kết dữ liệu của mô hình OSI. Chịu trách nhiệm truyền dữ liệu giữa hai thiết bị trong cùng một mạng. Tại đây, các gói dữ liệu được đóng vào khung (gọi là Frame) và được định tuyến đi đến đích đã được chỉ định ban đầu.
 
 ### **Tầng mạng**
 * Gần giống như tầng mạng của mô hình OSI. Tại đây, nó cũng được định nghĩa là một giao thức chịu trách nhiệm truyền tải dữ liệu một cách logic trong mạng. Các phân đoạn dữ liệu sẽ được đóng gói (Packets) với kích thước mỗi gói phù hợp với mạng chuyển mạch mà nó dùng để truyền dữ liệu. Lúc này, các gói tin được chèn thêm phần Header chứa thông tin của tầng mạng và tiếp tục được chuyển đến tầng tiếp theo. Các giao thức chính trong tầng là IP, ICMP và ARP.
-![ima](./Internet.png)
+![ima](IMG_OSI_TCP/Internet.png)
 ### **Tầng giao vận**
 * Chức năng chính của tầng 3 là xử lý vấn đề giao tiếp giữa các máy chủ trong cùng một mạng hoặc khác mạng được kết nối với nhau thông qua bộ định tuyến. Tại đây dữ liệu sẽ được phân đoạn, mỗi đoạn sẽ không bằng nhau nhưng kích thước phải nhỏ hơn 64KB. Cấu trúc đầy đủ của một Segment lúc này là Header chứa thông tin điều khiển và sau đó là dữ liệu.
 * Trong tầng này còn bao gồm 2 giao thức cốt lõi là TCP và UDP. Trong đó, TCP đảm bảo chất lượng gói tin nhưng tiêu tốn thời gian khá lâu để kiểm tra đầy đủ thông tin từ thứ tự dữ liệu cho đến việc kiểm soát vấn đề tắc nghẽn lưu lượng dữ liệu. Trái với điều đó, UDP cho thấy tốc độ truyền tải nhanh hơn nhưng lại không đảm bảo được chất lượng dữ liệu được gửi đi.
-![ima](./Transport_IP.png)
+![ima](IMG_OSI_TCP/Transport_IP.png)
 ### Tầng ứng dụng
 * Đây là lớp giao tiếp trên cùng của mô hình. Đúng với tên gọi, tầng Ứng dụng đảm nhận vai trò giao tiếp dữ liệu giữa 2 máy khác nhau thông qua các dịch vụ mạng khác nhau (duyệt web, chat, gửi email, một số giao thức trao đổi dữ liệu: SMTP, SSH, FTP,...). Dữ liệu khi đến đây sẽ được định dạng theo kiểu Byte nối Byte, cùng với đó là các thông tin định tuyến giúp xác định đường đi đúng của một gói tin.
-![ima](./Application_IP.png)
+![ima](IMG_OSI_TCP/Application_IP.png)
 
 
 # **So sánh**
