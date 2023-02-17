@@ -3,7 +3,7 @@
 # **Mô hình OSI**
 Mô hình OSI (Open systems Interconnection) là một mô hình giao thức mạng, được xây dựng bới ISO (International Organization for Standardization). Nó mô tả cách mà dữ liệu được truyền qua mạng máy tính và chia thành 7 tầng.
 
-![OSI](OSI.png)
+![OSI](img/OSI.png)
 
 - `Tầng 1 (Tầng vật lý)`: có chức năng chính là điều khiển việc truyền tải các bit trên đường truyền vật lý. Chúng định nghĩa các tín hiệu điện, trạng thái đường truyền, phương pháp mã hóa dữ liệu.
 - ` Tầng 2 (liên kết dữ liệu) `: Đảm bảo truyền tải các khung dữ liệu (Frame) giữa hai máy tính có đường truyền vật lý nối trực tiếp với nhau là điều mà chúng thực hiện. Ngoài ra nó còn cài đặt cơ chế phát hiện và xử lý lỗi dữ liệu nhận.
@@ -15,7 +15,7 @@ Mô hình OSI (Open systems Interconnection) là một mô hình giao thức m�
 
 # **Mô hình TCP/IP**
 Mô hình TCP/IP (Transmission Control Protocop/Internet Protocol) là một mô hình giao thức mạng được sử dụng rộng rãi trên Internet và các mạng máy tính. Nó chia thành 4 tầng, mỗi tầng cung cấp các dịch vụ khác nhau cho tầng trên và dưới.
-![TCP/IP](TCPIP.png)
+![TCP/IP](img/TCPIP.png)
 - ` Tầng 1 (Tầng truy nhập)`:Tầng này có thể coi là một tầng riêng biệt hoặc cũng có thể tách nó thành 2 tầng vật lý và liên kết dữ liệu như trong mô hình OSI. Nó được sử dụng để truyền gói tin từ tầng mạng đến các Host trong mạng. Các thiết bị vật lý như: Switch, cáp mạng, card mạng HBA-Host Bus Adapter là các thành phần truy cập.
 - ` Tầng 2 (Tầng mạng)`: Trên mô hình TCP/IP có vai trò chính là giải quyết vấn đề dẫn đến các gói tin đi qua mạng để đến đúng đích.
 - ` Tầng 3 (Tầng vận chuyển)`:Đảm nhiệm việc phân nhỏ các gói tin có kích thước lớn khi gửi và tập hợp lại khi nhận, tính toàn vẹn cho dữ liệu (không lỗi, không mất, đúng thứ tự) là yếu tố được đảm bảo. Nếu để ý thì bạn sẽ thấy chức năng của tầng vận chuyển ở giao thức TCP/IP cũng giống với tầng vận chuyển ở mô hình OSI.
