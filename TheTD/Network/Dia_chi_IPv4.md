@@ -83,21 +83,21 @@ Gồm 2 phần là `Header` và `Data`. Header chứa thông tin quản lý củ
 
 **Lớp A**
 
-    Lớp A được sử dụng cho các mạng lớn với nhiều host. Lớp A sử dụng 8 bit đầu tiên để xác định mạng và 24 bit cuối để xác định host. Địa chỉ IP lớp A có dạng x.y.z.w, trong đó giá trị của x nằm trong khoảng từ 1-126
+Lớp A được sử dụng cho các mạng lớn với nhiều host. Lớp A sử dụng 8 bit đầu tiên để xác định mạng và 24 bit cuối để xác định host. Địa chỉ IP lớp A có dạng x.y.z.w, trong đó giá trị của x nằm trong khoảng từ 1-126
 **Lớp B**
 
-    Lớp B được sử dụng cho các mạng trung bình với số lượng host trung bình. Lớp B sử dụng 16 bit đầu tiên để xác định mạng và 16 bit cuối để xác định host. Địa chỉ IP lớp B có dạng x.y.z.w, trong đó giá trị của x nằm trong khoảng từ 128 đến 191.
+Lớp B được sử dụng cho các mạng trung bình với số lượng host trung bình. Lớp B sử dụng 16 bit đầu tiên để xác định mạng và 16 bit cuối để xác định host. Địa chỉ IP lớp B có dạng x.y.z.w, trong đó giá trị của x nằm trong khoảng từ 128 đến 191.
 **Lớp C**
 
-    Lớp C được sử dụng cho các mạng nhỏ với số lượng host ít. Lớp C sử dụng 24 bit đầu tiên để xác định mạng và 8 bit cuối để xác định host. Địa chỉ IP lớp C có dạng x.y.z.w, trong đó giá trị của x nằm trong khoảng từ 192 đến 223.
+Lớp C được sử dụng cho các mạng nhỏ với số lượng host ít. Lớp C sử dụng 24 bit đầu tiên để xác định mạng và 8 bit cuối để xác định host. Địa chỉ IP lớp C có dạng x.y.z.w, trong đó giá trị của x nằm trong khoảng từ 192 đến 223.
 
 **Lớp D**
 
-    Lớp D được sử dụng để định danh cho các multicast address (địa chỉ đa điểm). Lớp D sử dụng 4 bit đầu tiên để đánh dấu địa chỉ multicast và 28 bit còn lại để xác định địa chỉ mạng.
+Lớp D được sử dụng để định danh cho các multicast address (địa chỉ đa điểm). Lớp D sử dụng 4 bit đầu tiên để đánh dấu địa chỉ multicast và 28 bit còn lại để xác định địa chỉ mạng.
 
 **Lớp E**
 
-    Lớp E được dành riêng cho các mục đích thử nghiệm và nghiên cứu. Lớp E sử dụng 5 bit đầu tiên để đánh dấu địa chỉ và 27 bit còn lại để xác định địa chỉ mạng.
+Lớp E được dành riêng cho các mục đích thử nghiệm và nghiên cứu. Lớp E sử dụng 5 bit đầu tiên để đánh dấu địa chỉ và 27 bit còn lại để xác định địa chỉ mạng.
 
 ## **IP public, IP Private, IP tĩnh và động**
 1. **Địa chỉ IP public**:
