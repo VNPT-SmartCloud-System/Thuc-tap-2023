@@ -132,6 +132,10 @@ Tầng giao vận chịu trách nhiệm chuyển phát toàn bộ bản tin từ
     - TCP có
     - UDP có thể có hoặc không
 
+**Wireshark**
+|![img](img/TCP(1).png)|![img](img/UDP(1).png)|
+|----------------------|----------------------|
+
 # **Tài liệu tham khảo**
 1. Giáo trình cơ sở mạng truyền thông - PTIT
 2. https://viblo.asia/p/tim-hieu-giao-thuc-tcp-va-udp-jvEla11xlkw
