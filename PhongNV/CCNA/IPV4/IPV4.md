@@ -1,35 +1,35 @@
 # **Phân tích tìm hiểu địa chỉ IPV4**
 ## **Khái niệm**
 * IPv4 (Internet Protocol version 4) là một giao thức mạng được sử dụng để định vị và định danh các thiết bị trên mạng Internet. Địa chỉ IPv4 là một chuỗi gồm 32 bit, được biểu diễn dưới dạng các số nguyên từ 0 đến 255, được phân tách bởi dấu chấm (ví dụ: 192.168.1.1).
-![ima](ImaIPV4\Ipv4.png)
+![ima](./ImaIPV4/Ipv4.png)
 * Địa chỉ IPV4 được chia thành 2 phần:
-  * ![ima](ImaIPV4\IPV4b.png)
+  * ![ima](./ImaIPV4/IPV4b.png)
     * Network-id: phân biệt mạng này với mạng khác
     * Host-id: định danh từng thiết bị trong hệ thống mạng
-    * ![ima](ImaIPV4\NHost.png)
+    * ![ima](./ImaIPV4/NHost.png)
 ## **Phân loại địa chỉ IPV4**
 ### **Lớp A**
 * Được sử dụng cho các mạng lớn, có địa chỉ mạng bắt đầu từ 1.0.0.0 đến 126.0.0.0.
 * Địa chỉ IP của lớp A được chia thành 2 phần: một phần cho địa chỉ mạng và phần còn lại cho địa chỉ máy.
-  ![ima](ImaIPV4\ClassA.png)
+  ![ima](./ImaIPV4/ClassA.png)
 * Bit đầu tiên của địa chỉ lớp A luôn 
 được chọn là 0.
-  ![ima](ImaIPV4\ClassA1.png) 
+  ![ima](./ImaIPV4/ClassA1.png) 
   
     
 
 ### **Lớp B**
 * Lớp B của địa chỉ Ipv4 sử dụng 2 obtet đầu làm phần mạng và 2 obtet sau làm phần host.Dải địa chỉ mạng lớp B chạy từ 128.0.0.0 đến 191.255.0.0.
-![ima](ImaIPV4\ClassB.png)
+![ima](./ImaIPV4/ClassB.png)
 * Hai bit đầu tiên của lớp B luôn là 1 và 0.
-![ima](ImaIPV4\ClassB1.png)
+![ima](./ImaIPV4/ClassB1.png)
 ### **Lớp C**
 * Lớp C của địa chỉ Ipv4 dùng 3 octet đầu làm phần mạng và 1 octet sau làm phần host. Dải mạng lớp C chạy từ 192.0.0.0 -> 223.255.255.0. Như vậy sẽ có 221 mạng trong lớp C.
 
-  ![ima](ImaIPV4\ClassC.png)
+  ![ima](./ImaIPV4/ClassC.png)
 
 * Địa chỉ lớp C luôn có 3 bit đầu là 110.
-  ![ima](ImaIPV4\ClassC1.png)
+  ![ima](./ImaIPV4/ClassC1.png)
 ### **Lớp D**
 * Lớp D được sử dụng làm các địa chỉ multicast và dải địa chỉ lớp D từ 224.0.0.0 -> 239.255.255.255.
 * Địa chỉ multicast trong IPv4 được sử dụng để truyền tải dữ liệu đa điểm trên mạng.được dùng để gửi dữ liệu đến một nhóm các thiết bị mạng.
@@ -47,13 +47,13 @@
 
 ## **Phương pháp chuyển đổi từ prefix sang địa chỉ subnet**
 
-![ima](ImaIPV4\Subnet.png)
+![ima](./ImaIPV4/Subnet.png)
 ## **Phương pháp chia địa chỉ IPV4 từ nhị phân sang thập phân**
 ![ima](ImaIPV4\2_10.png)
 
 ## **Phương pháp chia địa chỉ IPV4 từ thập phân sang nhị phân**
 
-![ima](ImaIPV4\10_2.png)
+![ima](./ImaIPV4/10_2.png)
 
 ## **Địa chỉ IP Public và IP Private**
 ### **Địa chỉ IP Public**
@@ -64,7 +64,7 @@
 
 ### **Khác biệt giữa IP Public và IP Private**
 
-![ima](ImaIPV4\Public_Private.png)
+![ima](./ImaIPV4/Public_Private.png)
 
 
 
