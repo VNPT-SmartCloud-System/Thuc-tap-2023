@@ -49,7 +49,7 @@
 
 ![ima](./ImaIPV4/Subnet.png)
 ## **Phương pháp chia địa chỉ IPV4 từ nhị phân sang thập phân**
-![ima](ImaIPV4\2_10.png)
+![ima](./ImaIPV4/2_10.png)
 
 ## **Phương pháp chia địa chỉ IPV4 từ thập phân sang nhị phân**
 
@@ -65,7 +65,6 @@
 ### **Khác biệt giữa IP Public và IP Private**
 
 ![ima](./ImaIPV4/Public_Private.png)
-
 
 
 
