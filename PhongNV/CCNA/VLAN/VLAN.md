@@ -53,6 +53,8 @@ Một VLAN không thể chuyển tiếp lưu lượng mạng sang những VLAN k
 # ***Tìm hiểu VTP***
 ## ***Khái niệm***   
    - Giao thức đồng bộ thông tin VLAN giữa các thiết bị Switch. Khi một hệ thống lớn thì việc tạo, xóa, sửa VLAN trong các Switch trở nên cực kì khó khăn. Thiếu tính chính xác và mất nhiều thời gian.Giao thức VTP tiến hành đồng bộ thông tin và cấu hình VLAN giữa các Switch trong cùng một miền Domain.
+![ima](./ImaVlan/3.png)
+
 
 ## ***Một số lợi ích của VTP bao gồm:***
 
@@ -70,6 +72,7 @@ STP là viết tắt của "Spanning Tree Protocol". Đây là một giao thức
 
 Khi được kích hoạt, STP sẽ xác định các đường kết nối trên mạng và xây dựng một cây cầu ảo (Virtual Bridge Network) bằng cách chọn ra một đường kết nối chính và các đường kết nối dự phòng để tránh các vòng lặp trên mạng. Các đường kết nối dự phòng sẽ được giữ trong trạng thái chờ đợi, sẵn sàng chuyển đổi vào khi đường kết nối chính gặp sự cố.
 
+![ima](./ImaVlan/4.png)
 ## ***Một số lợi ích của STP bao gồm:***
 
 Đảm bảo tính tin cậy và ổn định của mạng Ethernet.
@@ -87,3 +90,5 @@ Không bảo mật trong việc phát hiện và chọn ra đường kết nối
 <https://itforvn.com/bai-6-vlan-trunking-vtp.html/>
 
 <https://itforvn.com/tu-hoc-ccnax-bai-7-spanning-tree.html/>
+<https://trogiupnhanh.com/vtp-la-gi-cong-dung-cua-vtp/>
+<https://thegioimang.vn/dien-dan/threads/t%C3%ACm-hi%E1%BB%83u-giao-th%E1%BB%A9c-stp-spanning-tree-protocol-c%E1%BA%A5u-h%C3%ACnh-stp-tr%C3%AAn-switch-cisco.588/>
