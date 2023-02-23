@@ -14,9 +14,16 @@
 - Tiếp đến, switch sẽ cho phép dữ liệu cần được gửi giữa các port khác nhau có cùng một Virtual LAN.
 - Vì hầu hết các mạng đều có nhiều hơn là chỉ một switch duy nhất. Vì vậy, cần có một cách nào đó để có thể gửi lưu lượng giữa hai switch trong mạng. Cách đơn giản nhất chính là gán một port trên mỗi switch của Virtual LAN và chạy một cable giữa chúng.
 
+### **Phân loại**
+- **Port - based VLAN**: Mỗi cổng switch được gắn cho 1 VLAN xác định (mặc định là VLAN 1), do đó bất cứ thiết bị host nào gắn vào cổng đó đều thuộc VLAN đó.
+- **MAC Address - based VLAN**: Mỗi địa chỉ MAC được đánh dấu với 1 VLAN xác định
+- **Protocol - based VLAN**: Sử dụng địa chỉ IP để thay thế địa chỉ MAC.
+
+> Trong 3 loại trên thì loại **Port -based VLAN** phổ biến nhất và được sử dụng nhiều nhất.
+
 ## **2. Ưu điểm và nhược điểm của VLAN**
 
-![VLAN](img/VLAN(2).png)
+
 
 **Ưu điểm**
 - Giải quyết các vấn đề điển hình liên quan đến broadcast
@@ -87,6 +94,7 @@ Bằng cách thêm vào frame một ISL header có chứa VLAN ID, sw gửi sẽ
 
 ### **5.3 VTP Pruning**
  Tính năng hữu ích trong hoạt động trao đổi thông tin giữa các switch trong mạng chuyển mạch.
+
 ![VTP](img/VTP(2).png)
 
 - Giả sử Host thuộc VLAN 10 tiến hành gửi một Frame đến Host khác cũng thuộc VLAN 10 nhưng nằm trong một Switch khác. Vì mỗi VLAN là một broadcast domain nên frame này sẻ được chuyển đến tất các các host thuộc VLAN 10 của Switch 2. Mặc định trên đường trunk sẽ cho qua dữ liệu của tất cả VLAN nên SW4 cũng nhận được frame này. Khi mà nó không tồn tại VLAN 10 nên việc forward frame đến SW4 gây lãng phí tài nguyên và băng thông hệ thống.
