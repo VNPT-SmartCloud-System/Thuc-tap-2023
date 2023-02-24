@@ -65,7 +65,36 @@ Một VLAN không thể chuyển tiếp lưu lượng mạng sang những VLAN k
 - Khả năng gây ra sự cố nếu thiết bị VTP Server bị lỗi và phát tán thông tin sai về các VLAN trên mạng.
 - Không phù hợp cho các mô hình mạng phức tạp với nhiều VTP Domain.
 - Không bảo mật trong việc phân phối thông tin VLAN, do đó cần thực hiện các biện pháp bảo mật bổ sung để đảm bảo tính an toàn và bảo mật của mạng.
+## ***Cơ chế hoạt động của VTP***
+![ima](./ImaVlan/5.png)
 
+### ***Chế độ sever của VTP***
+- Một switch trong mạng sẽ được mặc 
+định hoạt động ở chế độ Server. Nó sẽ 
+tạo mới VLAN, sửa đổi VLAN, cũng có 
+thể xóa VLAN. Bên cạnh đó, nó sẽ 
+truyền, đồng bộ hóa thông tin VLAN 
+đến các switch khác trong cùng domain 
+và lưu cấu hình vào NVRAM.
+
+### ***Chế độ client của VTP***
+- Ở chế độ này, các switch chỉ truyền 
+và nhận các thông tin quảng bá đến 
+với nhau và tự động cập nhật cấu hình 
+VLAN của nó. Các switch không có 
+quyền xóa hay chỉnh sửa các VLAN. Các 
+switch cũng không lưu cấu hình vào 
+NVRAM như ở chế độ Server.
+
+### ***Chế độ Transparent của VTP***
+- Ở chế độ này, switch chỉ quảng bá 
+thông tin Vtp nào nhận ra được cổng 
+trunk của nó. Bởi vậy, nó không đồng 
+bộ hóa thông tin của VLAN. Nó có thể 
+tạo ra, chỉnh sửa và xóa VLAN trên 
+local. Bên cạnh đó, ở chế độ này , 
+các switch cũng lưu cấu hình vào 
+NVRAM như ở chế độ Server
 # ***Tìm hiểu STP***
 ## ***Khái niệm***
 STP là viết tắt của "Spanning Tree Protocol". Đây là một giao thức mạng được sử dụng để đảm bảo tính tin cậy và tránh các vòng lặp trên mạng Ethernet. Khi một mạng Ethernet có nhiều đường kết nối, STP sẽ tính toán và chọn ra một đường kết nối duy nhất để truyền dữ liệu giữa các thiết bị, đồng thời ngăn chặn các vòng lặp trên mạng.
@@ -84,6 +113,119 @@ Tốc độ hội tụ chậm khi đường kết nối chính gặp sự cố v
 Mất băng thông khi các đường kết nối dự phòng không được sử dụng.
 Không bảo mật trong việc phát hiện và chọn ra đường kết nối chính trên mạng Ethernet, do đó cần thực hiện các biện pháp bảo mật bổ sung để đảm bảo tính an toàn và bảo mật của mạng.
 
+## ***Những trường hợp xảy ra lỗi***
+### ***Broadcast Storm***
+- Giả sử Máy A triển khai gửi một broadcast frame vào mạng lưới hệ thống. Khi Switch X nhận được frame này nó sẽ đưa frame ra tổng thể những port đến Switch Y. Switch Y nhận được Broadcast Frame này lại liên tục gửi ra tổng thể những port trừ port nhận vào và quy trình frame này cứ chạy mãi một vòng giữa Switch X và Switch Y. Các Switch cứ nhân bản và flood broadcast frame này ra. Số lượng frame sẽ ngày càng lớn. Và khi Switch không còn năng lực giải quyết và xử lý nữa thì sẽ làm Switch bị treo .
+- ![ima](./ImaVlan/6.png)
+### ***Trùng lặp Frame***
+- Frame Máy tính A gửi một unicast frame đến Máy tính B và địa chỉ MAC của B chưa được update vào bảng MAC của Switch thì Switch sẽ giải quyết và xử lý những frame này như một flood và broadcast frame ra tổng thể những port trừ port nhận vào. Và Switch X và Switch Y đều triển khai chuyển flood frame này ra nhiều port khiến Máy tính B phải giải quyết và xử lý frame này 2 lần .
+Giao thức STP được sinh ra để xử lý triệt để trường hợp loop, single point of failure trên Layer 2. STP được IEEE chuẩn hóa IEEE 802.1 D .
+
+![ima](./ImaVlan/7.png)
+
+## ***Tiến trình bầu và hoạt động của các giao thức Spanning tree***
+### ***Chọn Root – Bridge của STP***
+- Một khi STP được bật, những Switch sẽ gửi những gói tin BPDU ( Bridge Protocol Data Unit ) để trao đổi giữa những Switch với nhau. Trong tiến trình STP, BPDU là một gói tin quan trọng. BPDU chứa một thông tin quan trọng là Bridge – ID của những Switch. Với giá trị này dùng để định danh mỗi Switch khi nào tham gia tiến trình STP .
+
+Bridge-ID dài 8 byte:
+
+-  Số Priority ( 2 byte ) : có giá trị từ 0 – 65535 mặc định là 32768
+- MAC address ( 6 byte )
+
+Tiến trình bầu Root – Bridge được tiến hành:
+
+- Trước tiên so sánh Switch nào có số Priority thấp nhất sẽ là Root – Bridge .
+- Các Switch có số Priority bằng nhau thì qua tiến trình thứ 2 là so sánh MAC. Switch nào có MAC nhỏ nhất sẽ làm Root – Bridge. Có thể xem trên quốc tế MAC là địa chỉ duy nhất không xảy ra trùng lặp được .
+
+- Sau khi đã bầu được Root – Bridge thì chỉ có Switch làm root mới gửi BPDU ra khỏi cổng để duy trì tiến trình STP (gửi 2s/lần). Các Switch con chỉ nhận, bổ xung thông tin BPDU và Forward thông tin BPDU này.
+
+### ***Bầu Root – Port của STP***
+- Sau khi đã bầu Root – bridge thì sẽ sang những Switch bầu chọn Root-Port. Root-Port là port có đường về Root – bridge có tổng cost tích góp nhỏ nhất .
+Mỗi interface của Ethernet LAN đều được gán cho một giá trị. Giá trị đó gọi là cost dùng để triển khai đo lường và thống kê của STP .
+Để xác lập được cost tích góp của một port đến Switch làm Root-bridge bạn thực thi tính ngược từ Root về cổng đó dựa theo chiều Viral BPDU theo quy tắc “ vào cộng ra không cộng ” .
+
+### ***Lựa các Designated Port***
+
+Tiếp theo STP ta triển khai bầu Designated Port. Designated Port là Port phân phối đường về root-bridge có tổng cost nhỏ nhất trên phân đoạn mạng bạn đang xét. Chỉ có một Designated port ứng với một link liên kết .
+
+### ***Blocking các port còn lại của STP***
+
+Bước ở đầu cuối trong STP là so với những port không có vai trò là Root hay Designated sẽ bị Block. Nó được gọi là Alternated port .
+
+## ***Quá trình tìm Block Port Spanning tree***
+### ***Root Switch:***
+-  Khi các Sw được đấu nối khởi động nó sẽ gửi gói tin BPDU(bridge protocol data unit) trên các port của Switch.
+- Thông số quyết định Sw nào được làm Root Sw là Bridge-ID(8 byte) gồm có các thông số :
+priority(của switch):
+dài 2 byte(9 -> 65535), default = 32768.
+Sw nào có chỉ số priority có chỉ số nhỏ nhất sẽ được chọn làm Root-switch
+MAC Address Switch:
+dài 6 byte.
+Xét từ trái sang phải từng giá trị hexa thì switch nào có MAC nhỏ nhất làm Root-switch
+- Khi bầu xong Root-switch thì chỉ có Root-switch được gửi BPDU(2s/1 lần). Việc gửi đó để duy trì cây spanning tree đó không bị Loop
+- Theo nguyên tắc đánh số MAC của nhà sản xuất thì khi bầu chọn root-switch nó sẽ chọn switch đời đầu làm root-switch => sw cùi cắp làm lãnh đạo. Nên trong thực tế ta ko bao giờ cho bầu chọn bằng MAC mà ta chỉnh priority
+
+### ***Root port:***
+ Là port cung cấp đường về Root-switch mà có tổng path-cost là nhỏ nhất
+- Khi bầu chọn Root-port thì Root-Switch ko tham gia quá trình bầu chọn này
+- Mỗi Root-switch chỉ có 1 Root-port
+- Path-cost là giá trị cost trên từng cổng của Switch.
+![ima](./ImaVlan/8.png)
+ Nguyên tắc tính tổng path-cost: tính từ switch đang muốn tính --> Root-switch
+Đi ra: ko cộng
+Đi vào: cộng cost
+#### ***Luật Tie-Break:***
+- Sender Bridge ID:
+  - Cổng nào kết nối switch mà switch đó có bridge ID nhỏ nhất -> port đó sẽ được chọn làm Root-port.
+  - Bridge ID của B nhỏ hơn C à port số 2 làm Root-port
+- Sender Port ID:
+  - Port ID của Switch bên kia thì port nào của switch bên kia có giá trị port-ID nhỏ hơn thì chọn port bên switch mình kết nối với port ID nhỏ hơn đó.
+    - Priority của port: có giá trị từ 0 -> 255, default=128. Port nào có priority nhỏ hơn thì port đó có Port ID nhỏ hơn.
+    - Vị trí của port: Xét theo hạng của số thứ tự của port. Port số 1 < port 2 -> port số 2 làm root-port
+![ima](./ImaVlan/9.png)
+
+- Khi các luật trên không giải quyết được thì nó sẽ xét đến Port ID trên chính nó
+  - Priority và vị trí của port
+  - VD: Vì hub nó thực hiện flood ra tất cả các port nên frame từ port 1 của swD sẽ đi đến hub và đi cả 2 đường từ hub -> swC. Nên lúc này chúng ta không thể xác định bằng cách trên. Lúc này ta phải xet port-ID trên chính SwC
+![ima](./ImaVlan/10.png)
+
+### ***Designated port***
+Tất cả các port của Root-sw đều là Designated port
+- Trên 1 phân đoạn nếu port đối diện là Root-port thì mình là Designated port(ko có ý nghĩa ngược lại).
+- Là port cung cấp đường về Root-sw trên phân đoạn mạng đang xét mà có tổng path-cost là nhỏ nhất.
+Vd: tính path-cost trên phân đoạn ta tính từ
+Root-sw(cat 2) --> cat 1 --> cat 4 = 38
+
+![ima](./ImaVlan/11.png)
+### ***Alternate port***
+Khi 1 trong các phân đoạn khác bị đứt thì phân đoạn port lock sẽ được mở ra để chạy
+- Khi phân đoạn trên có lại thì phân đoạn lock sẽ tiếp tục bị lock lại
+- Tuy port lock không nhận được dữ liệu nhưng nó vẫn nhận gói tin BPDU từ Root-switch để duy trì cây spanning-tree. Nếu nó không nhận được gói BPDU thì nó sẽ mở port lock này ra à lúc này bị loop ráng chịu
+
+### ***Peer PVST(peer Vlan Spanning tree)***
+PriorityVlan n = PriorityVlan n + n​
+- Lưu ý: Khi chỉnh sửa Priority thì số priority phải chia hết cho 4096
+- Ví dụ: Vlan 1 à priority = 32768 + 1
+
+![ima](./ImaVlan/12.png)
+
+### ***STP timer***
+- Helo timer: 2(s) Thời gian gửi BPDU
+- Forward timer: 15(s)
+- Max-agetimes: 20(s) Nếu Root-Sw chết hay port lock không nhận được BPDU thì mất 20s nó mới hoạt động( tự mở lên hoặc bầu chọn lại Root-sw)
+
+### ***STP state***
+- Các trạng thái khi Sw khởi động
+Disable: down
+Blocking: nhận BDPU, ko gửi BPDU, ko học MAC, ko forward frame
+Listening: _________, gửi BPDU, ___________________
+Leaning: __________________, học MAC, _______________
+Forwarding: _____________________________, forward frame
+- Việc chuyển từ trạng thái: Blocking sang listening mất 20(s)
+- Việc chuyển từ trạng thái: Listening sang Leaning mất 15(s)
+- Việc chuyển từ trạng thái: Leaning sang Forwarding mất 15(s)
+=> Vậy khi Sw khởi động xong or khi cắm dây vào port thì phải mất 30(s) đèn chuyển sang màu xanh
+=> Mất 30+20+2 = 52(s) để STP port lock mới hoạt động
 # ***Tài liệu tham khảo***
 <https://vietnix.vn/vlan/#:~:text=VLAN%20%28Virtual%20Local%20Area%20Network%29%20l%C3%A0%20m%E1%BB%99t%20m%E1%BA%A1ng,l%C3%BD%20gi%E1%BB%91ng%20nh%C6%B0%20m%E1%BB%99t%20m%E1%BA%A1ng%20LAN%20v%E1%BA%ADt%20l%C3%BD.>
 
@@ -92,3 +234,5 @@ Không bảo mật trong việc phát hiện và chọn ra đường kết nối
 <https://itforvn.com/tu-hoc-ccnax-bai-7-spanning-tree.html/>
 <https://trogiupnhanh.com/vtp-la-gi-cong-dung-cua-vtp/>
 <https://thegioimang.vn/dien-dan/threads/t%C3%ACm-hi%E1%BB%83u-giao-th%E1%BB%A9c-stp-spanning-tree-protocol-c%E1%BA%A5u-h%C3%ACnh-stp-tr%C3%AAn-switch-cisco.588/>
+<https://securityzone.vn/t/bai-19-tim-hieu-giao-thuc-spanning-tree-protocol.163/>
+<https://final-blade.com/spanning-tree-la-gi-1673583887>
