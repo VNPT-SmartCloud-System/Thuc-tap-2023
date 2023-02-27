@@ -51,9 +51,6 @@ VLAN 1002-1005|VLAN mặc đinh của Cisco cho vòng thông báo và FDDI. Khô
 VLAN 1006-4094|Nó là 1 phạm vi mở rộng của các VLAN
 
 ## **4. Trunking**
-
-![VLAN](img/VLAN(3).png)
-
 - Trong môi trường VLAN, một đường trunking là một kết nối point to point để hỗ trợ các switch kết nối với nhau.
 - Một đường Trunking bao gồm nhiều lớp liên kết ảo trên một kết nối vật lý để truyền tín hiệu từ các VLAN trên các Switch với nhau trên một đường cap vật lý.
 - Có 2 chuẩn của trunking:
