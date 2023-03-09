@@ -75,18 +75,6 @@ một cách dễ dàng và hiệu quả.
 
 Cấu trúc thư mục Linux được thiết kế để phân chia các tài nguyên hệ thống thành các phân vùng độc lập, giúp cho việc quản lý, bảo trì và sao lưu hệ thống trở nên dễ dàng hơn. Đồng thời, cấu trúc thư mục Linux cũng hỗ trợ việc quản lý quyền truy cập và bảo mật thông qua việc sử dụng các quyền sở hữu, quyền truy cập và quyền thực thi trên các tập tin và thư mục trong hệ thống.
 
-## ***Lợi ích của cấu trúc thư mục***
-Một trong những lợi ích chính của cấu trúc thư mục trong Linux là giúp người dùng và hệ thống quản trị viên tìm kiếm và truy cập các tệp và thư mục theo cách dễ dàng và nhanh chóng. Ngoài ra, cấu trúc thư mục còn giúp đảm bảo tính an toàn và bảo mật của hệ thống. Bằng cách đặt các tệp và thư mục trong các vị trí cụ thể, người quản trị có thể đảm bảo rằng các tệp tin cần thiết sẽ được tìm thấy một cách nhanh chóng và dễ dàng, trong khi tệp tin quan trọng không bị xóa hoặc thay đổi một cách vô tình.
-
-Các cấu trúc thư mục trong Linux cũng giúp hỗ trợ cho các ứng dụng và các tiến trình trong hệ thống. Ví dụ, các thư viện được sử dụng bởi các ứng dụng được lưu trữ trong thư mục /lib, và các tệp lệnh và các tiện ích được sử dụng để quản lý hệ thống được lưu trữ trong các thư mục như /bin và /sbin.
-
-Cuối cùng, cấu trúc thư mục trong Linux cũng giúp cho việc cài đặt và bảo trì hệ thống trở nên dễ dàng hơn. Với các tệp tin và thư mục được tổ chức một cách rõ ràng, việc tìm kiếm, cài đặt và bảo trì các ứng dụng và các tiện ích trên hệ thống trở nên đơn giản hơn.
-
-
-
-## ***Cấu trúc thư mục trong Linux hoạt động như thế nào***
-Cấu trúc thư mục trong Linux hoạt động theo một cách cụ thể và rất tổ chức. Tất cả các tệp và thư mục trong hệ thống được đặt trong một cây thư mục chính, được gọi là hệ thống tệp tin. Cây thư mục này bắt đầu từ thư mục gốc (/) và có một số thư mục con khác nhau được đặt trong đó, với mỗi thư mục có một mục đích cụ thể.
-
 ## ***Ưu điểm:***
 
 - Tính tổ chức cao: Cấu trúc thư mục trong Linux rất có tổ chức và chuẩn mực. Điều này giúp người dùng dễ dàng tìm kiếm và quản lý các tập tin và thư mục.
