@@ -32,13 +32,12 @@ Kích hoạt partition swap mới bằng lệnh swapon:`sudo swapon /dev/sdb1`
 
 # ***Swap dimensioning***
 Swap dimensioning là quá trình tạo và quản lý vùng swap trong hệ thống Linux. Vùng swap là một phần của đĩa cứng được sử dụng để lưu trữ dữ liệu khi hệ thống gặp phải tình huống không đủ bộ nhớ RAM để thực hiện các tác vụ.
-
-, 
+ 
 - Kiểm tra xem hệ thống đã có vùng swap hay chưa
 `swapon -s`
-- /etc/fstab: Cấu hình để hệ thống tự động mount vùng swap khi khởi động lại.
-- /etc/sysctl.conf: Cấu hình để tăng kích thước vùng swap hoặc điều chỉnh thời gian hoạt động của swap.
-- /proc/sys/vm/swappiness: Cấu hình để điều chỉnh cách hệ thống sử dụng vùng swap.
+- `/etc/fstab`: Cấu hình để hệ thống tự động mount vùng swap khi khởi động lại.
+- `/etc/sysctl.conf`: Cấu hình để tăng kích thước vùng swap hoặc điều chỉnh thời gian hoạt động của swap.
+- `/proc/sys/vm/swappiness`: Cấu hình để điều chỉnh cách hệ thống sử dụng vùng swap.
 Tổng quan về swap dimensioning trên Linux như trên đây, tuy nhiên để cấu hình vùng swap một cách phù hợp cho hệ thống của bạn, bạn cần hiểu rõ các yêu cầu và tài nguyên của hệ thống để tối ưu hóa việc sử dụng vùng swap.
 ## ***bảng Swap***
 Bảng Swap dimensioning trong Linux giúp ta xác định kích thước của vùng swap cần thiết cho hệ thống. Thông thường, kích thước vùng swap được tính toán dựa trên tổng số bộ nhớ RAM của hệ thống và các yếu tố khác như tải công việc và loại tác vụ được thực hiện trên hệ thống.
@@ -48,7 +47,7 @@ Dưới đây là một bảng Swap dimensioning được đề xuất cho các 
 ![imag](./Img/5.png)
 Lưu ý rằng, bảng Swap dimensioning trên chỉ là một đề xuất và kích thước vùng swap cần thiết có thể khác nhau tùy thuộc vào yêu cầu cụ thể của hệ thống. Nếu bạn không sử dụng tính năng hibernation trên hệ thống của mình, bạn có thể cân nhắc giảm kích thước vùng swap. Ngược lại, nếu bạn thường xuyên sử dụng tính năng hibernation, bạn cần tăng kích thước vùng swap để đảm bảo có đủ không gian lưu trữ dữ liệu khi hệ thống vào chế độ hibernation.
 # ***Add a swap area as a file***
-Swap area là một phần của ổ cứng được sử dụng để lưu trữ các trang bộ nhớ tạm thời khi bộ nhớ RAM của hệ thống đã đầy. Trong Linux, bạn có thể tạo swap area bằng cách sử dụng một phân vùng hoặc một tệp swap. Trong trường hợp bạn không muốn tạo một phân vùng mới để sử dụng làm swap area, bạn có thể tạo một tệp swap để sử dụng thay thế. Bên dưới là hướng dẫn tạo tệp swap trong Linux:
+Swap area là một phần của ổ cứng được sử dụng để lưu trữ các trang bộ nhớ tạm thời khi bộ nhớ RAM của hệ thống đã đầy. Trong Linux, bạn có thể tạo swap area bằng cách sử dụng một phân vùng hoặc một tệp swap. Trong trường hợp bạn không muốn tạo một phân vùng mới để sử dụng làm swap area, bạn có thể tạo một tệp swap để sử dụng thay thế.
 
 Lưu ý rằng kích thước của tệp swap sẽ ảnh hưởng đến hiệu suất của hệ thống. Kích thước của tệp swap phải đủ lớn để đảm bảo rằng hệ thống có đủ không gian để lưu trữ các trang bộ nhớ tạm thời khi bộ nhớ RAM đã đầy. Tuy nhiên, quá nhiều tệp swap cũng có thể gây ra hiệu ứng phụ do quá trình swap in và swap out.
 ## ***Bộ nhớ tạm thời là gì***

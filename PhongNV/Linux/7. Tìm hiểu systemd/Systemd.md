@@ -97,10 +97,41 @@ Systemd mới chỉ xuất hiện từ 30-3-2010, còn trước đó có 2 hệ 
 - Thay đổi hostname trên hệ thống Ubuntu:
 `sudo hostnamectl set-hostname new-hostname`
 
+# ***Vị trị tệp Systemd***
+-	`/usr/lib/systemd/system/`: Các tệp đơn vị Systemd được phân phối với các gói RPM đã cài đặt.
+-	`/run/systemd/system/`: Tệp đơn vị systemd được tạo trong thời gian chạy. Thư mục này được ưu tiên hơn thư mục có các tệp đơn vị dịch vụ đã cài đặt.
+-	`/etc/systemd/system/` : Các tệp đơn vị systemd được tạo bởi systemctl enable cũng như các tệp đơn vị được thêm vào để mở rộng dịch vụ. Thư mục này được ưu tiên hơn thư mục chứa các tệp đơn vị thời gian chạy.
 
 
+# ***Cấu hình systemd***
+-	Tìm và chỉnh sửa tệp cấu hình: Tệp cấu hình chính của systemd là `/etc/systemd/system.conf`.  Bạn có thể chỉnh sửa các tùy chọn cấu hình trong tệp này để tăng hiệu suất và bảo mật của hệ thống.
 
+-	Tạo hoặc chỉnh sửa tệp dịch vụ: Mỗi dịch vụ được quản lý bởi systemd cần một tệp mô tả dịch vụ đó. Tệp này nằm trong thư mục `/etc/systemd/system/`. Bạn có thể tạo hoặc chỉnh sửa tệp này để cấu hình các tùy chọn như tên dịch vụ, đường dẫn tới tệp thực thi, người dùng chạy dịch vụ, thời gian chờ khởi động và các tùy chọn khác.
+
+-	Tải lại hệ thống: Sau khi bạn đã chỉnh sửa tệp cấu hình và tệp dịch vụ, bạn cần tải lại hệ thống để systemd nhận biết các thay đổi này. Bạn có thể thực hiện điều này bằng cách chạy lệnh `systemctl daemon-reload`.
+
+
+# ***Tạo systemd riêng***
+- Kiểm tra bản phân phối trên Linux
+ ![imag](./Img/6.png)
+ - Tuyến đường mà chúng ta phải đi để xem từng dịch vụ là “`/ etc / systemd / system /`”, do đó, nếu chúng ta sử dụng lệnh “cd”, chúng ta sẽ có thể đi đến tuyến đường này mà không gặp vấn đề gì:`cd /etc/systemd/system/`
+ - Nếu thực hiện lệnh “ls” để liệt kê tất cả các dịch vụ,sẽ có thể xem tất cả các dịch vụ được tạo theo mặc định. Tùy thuộc vào các chương trình bạn đã cài đặt,sẽ có một số dịch vụ hoặc một số dịch vụ khác.
+ ![imag](./Img/10.png)
+  tạo một tệp có tên « phongnv.service »Bằng cách thực hiện lệnh:
+
+`sudo nano phongnv.service`
+![imag](./Img/11.png)
+# ***Lệnh journactl***
+Journalctl là một công cụ nhật ký hệ thống được sử dụng để xem các thông tin nhật ký của systemd trên hệ điều hành Linux. Journalctl sử dụng cơ sở dữ liệu nhật ký của systemd để hiển thị các thông tin nhật ký của hệ thống.
+- Xem nhật kí dùng lệnh: `sudo journalctl`
+![imag](./Img/7.png)
+- `journalctl -b`: Hiển thị các thông tin nhật ký của phiên khởi động gần nhất.
+![imag](./Img/8.png)
+- `journalctl -f`: Hiển thị các thông tin nhật ký theo thời gian thực
+![imag](./Img/9.png)
 # ***Tài liệu tham khảo***
 <https://viblo.asia/p/tim-hieu-va-van-dung-systemd-de-quan-ly-he-thong-linux-phan-co-ban-WAyK8kN65xX>
 
 <https://www.techsupportpk.com/2015/05/linux-systemd-essentials-working-with-services-units-and-the-journal.html>
+
+<https://itigic.com/vi/create-or-configure-a-service-on-linux-servers-using-systemd/>
