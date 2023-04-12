@@ -109,6 +109,128 @@ ACTIVE            '/dev/storage/staging-area' [60.00 GiB] inherit
 # mount /dev/storage/staging-area /staging
 ```
 
+
+# ***Tìm hiểu lệnh `mkfs`***
+ Là tạo các hệ thống tệp. Hay gọi khác có thể 
+được gọi là định dạng.Đó là quá trình chuẩn bị 
+một phân vùng để nó có thể lưu trữ dữ liệu. Phân 
+vùng cần một cách để lưu tập tin, vâng.
+
+ - Hệ thống tệp có sẵn
+
+```
+  $ mkfs
+mkfs         mkfs.cramfs  mkfs.ext3    mkfs.
+fat     mkfs.msdos   mkfs.vfat
+mkfs.bfs     mkfs.ext2    mkfs.ext4    mkfs.
+minix   mkfs.ntfs    
+```
+
+
+Các thư mục trên đề cập đến các lệnh `mkfs` để 
+tạo ra các loại hệ thống tập tin khác nhau trên 
+Linux.
+
+- `mkfs.bfs`: tạo ra một hệ thống tập tin BFS 
+(BeOS File System).
+- `mkfs.cramfs`: tạo ra một hệ thống tập tin 
+CRAMFS (Compressed ROM File System), được sử dụng 
+cho các thiết bị nhúng.
+- `mkfs.ext2`, `mkfs.ext3`, `mkfs.ext4`: tạo ra 
+các hệ thống tập tin ext2, ext3 và ext4, được sử 
+dụng phổ biến trên các bản phân phối Linux.
+- `mkfs.fat`, `mkfs.msdos`, `mkfs.vfat`: tạo ra 
+các hệ thống tập tin FAT (File Allocation Table), 
+MS-DOS và VFAT, được sử dụng trên các thiết bị 
+lưu trữ di động như USB hoặc thẻ nhớ.
+- `mkfs.minix`: tạo ra một hệ thống tập tin 
+Minix, được sử dụng trên một số bản phân phối 
+Linux và các thiết bị nhúng.
+
+Các lệnh `mkfs` này được sử dụng để tạo ra các hệ 
+thống tập tin trên các thiết bị lưu trữ khác 
+nhau, tùy thuộc vào mục đích sử dụng và yêu cầu 
+của người dùng.
+
+# ***Tìm hiểu lệnh `mount`***
+Lệnh `mount` trong Linux được sử dụng để kết nối 
+một hệ thống tập tin đã được tạo trên một thiết 
+bị lưu trữ (như ổ đĩa cứng, USB, thẻ nhớ, ...) 
+vào một thư mục trên hệ thống tập tin hiện tại. 
+Kết nối hệ thống tập tin này có thể cho phép bạn 
+truy cập và sử dụng các tập tin và thư mục được 
+lưu trữ trên thiết bị đó.
+
+# ***Lệnh `lvscan` trong linux***
+Trong LVM (Logical Volume Manager) trên Linux, 
+lệnh `lvscan` được sử dụng để quét các Logical 
+Volume (LV) hiện có và hiển thị thông tin về 
+chúng.
+
+Cú pháp của lệnh `lvscan` như sau:
+
+```
+lvscan [options]
+```
+
+Trong đó, `options` là các tùy chọn để cấu hình 
+lệnh. Một số tùy chọn phổ biến của `lvscan` như 
+sau:
+
+- `-a`: Quét tất cả các Volume Group (VG) và LV, 
+bao gồm cả những LV đang bị khóa.
+- `-c`: Hiển thị kết quả dưới dạng cột.
+- `-d`: Hiển thị kết quả dưới dạng giảm dần 
+(descending).
+- `-h`: Hiển thị kết quả dưới dạng đơn vị được 
+định dạng (megabytes, gigabytes, ...).
+- `-o`: Chỉ định các trường thông tin để hiển 
+thị, ví dụ như `lv_name`, `lv_size`, `vg_name`, 
+`lv_path`, `lv_attr`, ...
+
+Khi được chạy, `lvscan` sẽ quét các LV hiện có 
+trên hệ thống và hiển thị thông tin về chúng, bao 
+gồm tên LV, dung lượng, VG chứa LV, đường dẫn đến 
+LV, trạng thái của LV, ...
+
+# ***Tạo 2 phân vùng***
+```
+$ fdisk /dev/sdb
+
+Welcome to fdisk (util-linux 2.37.2).
+Changes will remain in memory only, until you 
+decide to write them.
+Be careful before using the write command.
+
+fdisk: cannot open /dev/sdb: No such file or 
+directory
+vanphong17@vanphong17-Inspiron-5490:~$ pvcreate /
+dev/sdb
+  WARNING: Running as a non-root user. 
+Functionality may be unavailable.
+  /run/lock/lvm/P_global:aux: open failed: 
+Permission denied
+vanphong17@vanphong17-Inspiron-5490:~$ sudo -i
+[sudo] password for vanphong17: 
+root@vanphong17-Inspiron-5490:~# pvcreate /dev/sdb
+  No device found for /dev/sdb.
+root@vanphong17-Inspiron-5490:~# pvcreate /dev/
+sdb1
+  No device found for /dev/sdb1.
+root@vanphong17-Inspiron-5490:~# su - vanphong17
+vanphong17@vanphong17-Inspiron-5490:~$ pvcreate /
+dev/sdb1
+  WARNING: Running as a non-root user. 
+Functionality may be unavailable.
+  /run/lock/lvm/P_global:aux: open failed: 
+Permission denied
+```
+
+
+
+
+
+
 # ***Tài liệu tham khảo***
 https://viblo.asia/p/linux-tim-hieu-lvm-trong-linux-Az45b0woZxY
 https://itzone.com.vn/vi/article/tim-hieu-lvm-trong-linux/
