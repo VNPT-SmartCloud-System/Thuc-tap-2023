@@ -31,6 +31,7 @@
 - Giao thức TCP có độ tin cậy cao, các gói tin được gửi bằng TCP sẽ được theo dõi do vậy dữ liệu sẽ không bị mất hoặc hỏng trong quá trình vận chuyển. Đó là lý do tại sao file tải xuống không bị hỏng ngay cả khi mạng có vấn đề. Tất nhiên, nếu bên nhận hoàn toàn ngoại tuyến, máy tính của bạn sẽ từ bỏ và bạn sẽ thấy một thông báo lỗi ghi nó không thể giao tiếp với máy chủ lưu trữ từ xa.
 
 - Giao thức TCP đạt được điều này theo hai cách. Đầu tiên, nó yêu cầu các gói tin bằng cách đánh số chúng. Thứ hai, nó kiểm tra lỗi bằng cách yêu cầu bên nhận gửi phản hồi đã nhận được cho bên gửi. Nếu bên gửi không nhận được phản hồi đúng, nó có thể gửi lại gói tin để đảm bảo bên nhận nhận chúng một cách chính xác.
+- 
 
   ## ***Đặc điểm của TCP***
 - Đảm bảo tính toàn vẹn dữ liệu: TCP sử dụng các cơ chế kiểm soát lỗi, giúp đảm bảo tính toàn vẹn dữ liệu trong quá trình truyền tải. Nếu một gói dữ liệu bị mất hoặc bị hỏng, TCP sẽ yêu cầu thiết bị gửi gửi lại gói dữ liệu đó để đảm bảo tính toàn vẹn dữ liệu.
