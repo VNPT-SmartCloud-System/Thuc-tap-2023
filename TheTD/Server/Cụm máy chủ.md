@@ -81,3 +81,11 @@ Network Controller (còn gọi là Network Interface Card hoặc NIC) là một 
 
 Một số network controller có tính năng quản lý băng thông để giúp ưu tiên truyền dữ liệu của ứng dụng quan trọng và giảm thiểu sự cạnh tranh về tốc độ mạng giữa các ứng dụng khác nhau. Một số NIC cũng hỗ trợ các tính năng bảo mật, chẳng hạn như mã hóa dữ liệu và chứng thực mạng để giúp bảo vệ thông tin truyền qua mạng
 
+# **Quy trình thực hiện các bước để vào IDC Nam Thăng Long**
+
+- Ban đầu, muốn vào IDC thì ta phải khai báo thông tin cá nhân như mail, số điện thoại, căn cước công dân để được đăng ký vào IDC
+- Sau đó khi đến cổng vào IDC, ta sẽ phải đăng ký thông tin như họ tên, ID(Đối với người là nhân viên VNPT-IDC) / cccd cho nhân viên bảo vệ (Đối với người không phải nhân viên VNPT-IDC)(Lớp 1)
+- Tiếp đến di chuyển vào quầy lễ tân, chúng ta tiếp tục đăng ký thông tin như họ tên, cccd, thời gian check in, cho lễ tân. (Lớp 2)
+- Để vào được bên trong khu vực văn phòng, trung tâm dữ liệu, thì cần phải liên hệ với nhân viên làm việc tại IDC để mở một lớp cửa khóa tự động và được phát cho thẻ Khách, giữ lại cccd
+- Sau khi làm việc xong, sẽ thông báo cho nhân viên IDC để cấp lại cccd, di chuyển ra quầy lễ tân báo cho nhân viên thời gian Check out, tương tự khi qua cổng bảo vệ ở ngoài
+
