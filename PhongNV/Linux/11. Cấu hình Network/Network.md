@@ -4,57 +4,18 @@
 ### Lệnh trả lại thông tin trên từng thiết bị Ethernet được kết nối.
 `# ip addr show` 
 
-```
-[root@localhost ~]# ip addr show
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host
-       valid_lft forever preferred_lft forever
-2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 00:0c:29:a2:90:be brd ff:ff:ff:ff:ff:ff
-    inet 192.168.37.132/24 brd 192.168.37.255 scope global noprefixroute dynamic ens33
-       valid_lft 1278sec preferred_lft 1278sec
-    inet6 fe80::4e92:119f:6f23:fcd0/64 scope link noprefixroute
-       valid_lft forever preferred_lft forever
-```
-
-Để xem thông tin về `ens33`:
-```
-[root@localhost ~]# ip addr show ens33
-2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 00:0c:29:a2:90:be brd ff:ff:ff:ff:ff:ff
-    inet 192.168.37.132/24 brd 192.168.37.255 scope global noprefixroute dynamic ens33
-       valid_lft 1005sec preferred_lft 1005sec
-    inet6 fe80::4e92:119f:6f23:fcd0/64 scope link noprefixroute
-       valid_lft forever preferred_lft forever
-[root@localhost ~]#
-```
-
+![IMG](./IMG/19.png)
+Để xem thông tin về `enp0s3`:
+![IMG](./IMG/20.png)
 ### Hiện thị bảng định tuyến
 `ip route show`
-```
-[root@localhost ~]# ip route show
-default via 192.168.37.1 dev ens33 proto dhcp metric 100
-192.168.37.0/24 dev ens33 proto kernel scope link src 192.168.37.132 metric 100
-```
-
+![IMG](./IMG/21.png)
 ### Gán IP cho một giao diện mạng:
-`# ip addr add 192.168.37.133 dev ens33`
-```
-[root@localhost ~]# ip addr add 192.168.37.133 dev ens33
+`# ip addr add 10.0.2.16 dev enp0s3`
+![IMG](./IMG/23.png)
 
-[root@localhost ~]# ip addr show dev ens33
-2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 00:0c:29:a2:90:be brd ff:ff:ff:ff:ff:ff
-    inet 192.168.37.132/24 brd 192.168.37.255 scope global noprefixroute dynamic ens33
-       valid_lft 1136sec preferred_lft 1136sec
-    inet 192.168.37.133/32 scope global ens33
-       valid_lft forever preferred_lft forever
-    inet6 fe80::4e92:119f:6f23:fcd0/64 scope link noprefixroute
-       valid_lft forever preferred_lft forever
-```
+
+
 
 ### Gán nhiều IP cho một giao diện mạng:
 Để gán nhiều IP cho giao diện mạng ta làm tương tự như trên
@@ -63,38 +24,23 @@ default via 192.168.37.1 dev ens33 proto dhcp metric 100
 
 `# ip addr del 192.168.37.133/32 dev ens33`
 
-```
-[root@localhost ~]# ip addr del 192.168.37.133/32 dev ens33
-[root@localhost ~]# ip addr show dev ens33
-2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 00:0c:29:a2:90:be brd ff:ff:ff:ff:ff:ff
-    inet 192.168.37.132/24 brd 192.168.37.255 scope global noprefixroute dynamic ens33
-       valid_lft 1078sec preferred_lft 1078sec
-    inet6 fe80::4e92:119f:6f23:fcd0/64 scope link noprefixroute
-       valid_lft forever preferred_lft forever
-```
+![IMG](./IMG/22.png)
+
 
 ### Hiển thị thông tin về một giao diện mạng
-```
-[root@localhost ~]# ip link show
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-    link/ether 00:0c:29:a2:90:be brd ff:ff:ff:ff:ff:ff
-```
+
+![IMG](./IMG/24.png)
+
 ### Thay đổi trạng thái giao diện mạng (up/down)
 `ip link set dev {DEVICE} {up|down}`
 
 ### Hiện thị bảng định tuyến
 `# ip route`
-```
-[root@localhost ~]# ip route
-default via 192.168.37.1 dev ens33 proto dhcp metric 100
-192.168.37.0/24 dev ens33 proto kernel scope link src 192.168.37.132 metric 100
-```
+
+![IMG](./IMG/25.png)
 
 ### Thêm một định tuyến mới
-`# ip route add 192.168.37.0/24 via 192.168.37.1`
+`# ip route add 10.0.2.0/24 via 10.0.2.2`
 ### Xóa một định tuyến
 `ip route del default`
 
@@ -102,44 +48,116 @@ Hoặc chỉ định định tuyến cần xóa.
 
 `ip route del <dia_chi_ip> via <gateway>`
 
-## Lệnh Route
-Hiện tại bộ công cụ `iproute2` đã được thay thế mặc định cho bộ công cụ `net-tools` ở các bản phân phối Linux mới như RHEL7, CentOS 7 ...vv, dẫn tới bạn sẽ hay gặp lỗi `-bash: ifconfig: command not found` trên CentOS 7.
-Cài đặt `net-tools` trên Centos 7:
 
-`yum install net-tools`
+# ***Tìm hiểu trên Cenos***
+## ***Tìm hiểu `nmcli`***
+nmcli là một công cụ dòng lệnh được sử dụng để kiểm soát Trình quản lý mạng. lệnh nmcli cũng có thể được sử dụng để hiển thị trạng thái thiết bị mạng, tạo, chỉnh sửa, kích hoạt/hủy kích hoạt và xóa kết nối mạng. 
+**Sử dụng điển hình:**
 
-Lệnh `route` được sử dụng để xem hoặc thay đổi bảng định tuyến IP. Bạn có thể muốn thay đổi bảng định tuyến IP để thêm, xóa hoặc sửa đổi các tuyến tĩnh thành các máy chủ hoặc mạng cụ thể.
+Tập lệnh : Thay vì quản lý thủ công các kết nối mạng, nó sử dụng NetworkMaager qua nmcli.
+Máy chủ , máy không đầu và thiết bị đầu cuối : Có thể được sử dụng để điều khiển Trình quản lý mạng không có GUI và điều khiển các kết nối trên toàn hệ thống.
+**Cú pháp:**
 
-### Hiện thị bảng định tuyến
-`# route -n`
-```
-[root@localhost ~]# route -n
-Kernel IP routing table
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-0.0.0.0         192.168.37.1    0.0.0.0         UG    100    0        0 ens33
-192.168.37.0    0.0.0.0         255.255.255.0   U     100    0        0 ens33
-```
+`nmcli [TÙY CHỌN] ĐỐI TƯỢNG { LỆNH | giúp đỡ }`
+- Để kiểm tra trạng thái thiết bị sử dụng lệnh nmcli .
+![IMG](./IMG/26.png)
+Chúng ta có thể thấy rằng đầu ra được hiển thị trong các cột khác nhau bao gồm tên thiết bị, loại thiết bị và trạng thái kết nối. Đầu ra có thể khác nhau với các máy khác nhau. 
+- Để kiểm tra kết nối đang hoạt động trên thiết bị. 
+![IMG](./IMG/26.png)
 
-### Thêm 1 định tuyến
-`# route add -net 192.168.1.0 netmask 255.255.255.0 dev ens33`
-```
-[root@localhost ~]# route add -net 192.168.1.0 netmask 255.255.255.0 dev ens33
+## ***Tìm hiểu `nmtui`***
+- B1: `nmcli`
+- ![IMG](./IMG/15.png)
+- ![IMG](./IMG/16.png)
+- ![IMG](./IMG/17.png)
 
-[root@localhost ~]# route -n
-Kernel IP routing table
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-0.0.0.0         192.168.37.1    0.0.0.0         UG    100    0        0 ens33
-192.168.1.0     0.0.0.0         255.255.255.0   U     0      0        0 ens33
-192.168.37.0    0.0.0.0         255.255.255.0   U     100    0        0 ens33
-```
-### Xóa 1 định tuyến
-`# route del -net 192.168.1.0 netmask 255.255.255.0 dev ens33`
-```
-[root@localhost ~]# route del -net 192.168.1.0 netmask 255.255.255.0 dev ens33
+## ***Cấu hình file***
+### ***NFS là gì?***
+NFS (Network File System) là một hệ thống giao thức chia sẻ file phát triển bởi Sun Microsystems từ năm 1984, cho phép một người dùng trên một máy tính khách truy cập tới hệ thống file chia sẻ thông qua một mạng máy tính giống như truy cập trực tiếp trên ổ cứng.
+### ***Những tính năng của NFS là gì?***
+- NFS cho phép truy cập cục bộ đến các tệp từ xa, cho phép nhiều máy tính sử dụng cùng một tệp để mọi người trên mạng có thể truy cập vào cùng một dữ liệu
+- Với sự trợ giúp của NFS, chúng ta có thể cấu hình các giải pháp lưu trữ tập trung.
+- Giảm chi phí lưu trữ bằng cách để các máy tính chia sẻ ứng dụng thay vì cần dung lượng ổ đĩa cục bộ cho mỗi ứng dụng của người dùng
+- Giảm chi phí quản lý hệ thống và minh bạch hệ thống tập tin
+- Cung cấp tính nhất quán và độ tin cậy của dữ liệu vì tất cả người dùng đều có thể đọc cùng một bộ tệp
+- Có thể bảo mật với Firewalls và Kerberos
+### ***Khởi động và dừng NFS***
+Việc khởi động dịch vụ NFS cũng khá đơn giản và đã được giới thiệu ở trên bằng cách
+khởi động portmap và nfs.
+`service nfs start`
+hoặc
+`/etc/init.d/nfs start`
+Việc dừng (tắt) dịch vụ này cũng khá đơn giản, ta dùng lệnh sau:
+#`service nfs stop`
+hoặc
+`/etc/init.d/nfs stop`
+Ta có thể đặt cho dịch vụ này được tự động khởi động khi ta khởi động máy tính bằng
+cách dùng lệnh:
+`setup`
+![IMG](./IMG/13.png)
+## ***Tìm hiểu `nmtui`***
 
-[root@localhost ~]# route -n
-Kernel IP routing table
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-0.0.0.0         192.168.37.1    0.0.0.0         UG    100    0        0 ens33
-192.168.37.0    0.0.0.0         255.255.255.0   U     100    0        0 ens33
-```
+- B1: `nmcli` Bắt đầu công cụ nmtui :
+  - ![IMG](./IMG/15.png)
+- ![IMG](./IMG/16.png)
+- ![IMG](./IMG/17.png)
+
+
+
+# ***Tìm hiểu trên Ubuntu***
+## ***Cấu hình ifup và ifdown***
+### ***Cài đặt ifup và ifdown***
+`ip link set dev {DEVICE} {up|down}`
+Cài đặt cấu hình ifup và ifdown
+`sudo apt install ifupdown`
+### ***Lệnh `ifup`***
+Để kích hoạt hoặc thiết lập một giao diện
+- Cú pháp
+
+`ifup [option]`
+- Cập nhật tất cả giao diện mạng
+![IMG](./IMG/28.png)
+
+
+### ***Lệnh `ifdown`***
+Để ngắt một giao diện
+- Cú pháp
+
+`ifdown [option]`
+Ngắt kết nối tất cả các mạng
+
+![IMG](./IMG/29.png)
+
+# ***Tìm hiểu `net plan`***
+
+- Tệp cấu hình mặc định của Netplan nằm trong thư mục `/etc/netplan`.Có thể thấy rằng bằng cách sử dụng lệnh sau:`ls /etc/netplan/`
+
+![IMG](./IMG/32.png)
+
+- Để xem nội dung của tệp cấu hình mạng Netplan,chạy lệnh sau: `cat /etc/netplan/*.yaml`
+  ![IMG](./IMG/32.png)
+- Để chỉnh sửa tệp cấu hình: `sudo nano /etc/netplan/*.yaml`
+
+  Cấu hình địa chỉ IP tĩnh: 
+![IMG](./IMG/30.png)
+![IMG](./IMG/31.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
