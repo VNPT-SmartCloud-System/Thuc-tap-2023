@@ -1,8 +1,8 @@
 # Hướng dẫn cấu hình địa chỉ IP cho Ubuntu và CentOS
 
-# Ubuntu
+# I. Ubuntu
 
-## Chỉnh sửa IP cho ubuntu sử dụng file /etc/netplan/01-network-manager-all.yaml
+## 1. Chỉnh sửa IP cho ubuntu sử dụng Netplan
 
 Hiển thị nội dung của file bằng lệnh `cat`
 
@@ -82,7 +82,7 @@ echo "network:
 
 Lưu ý rằng tệp cấu hình Netplan phải có định dạng YAML và phải tuân thủ các quy tắc định dạng YAML để được đọc bởi Netplan.
 
-## Cấu hình mạng sử dụng ifupdown
+## 2. Cấu hình mạng sử dụng ifupdown
 
 **Ifupdown** là một bộ công cụ cấu hình mạng được sử dụng trên các hệ điều hành dựa trên Linux. Nó thường được sử dụng trên Debian và các bản phân phối tương tự, như Ubuntu.
 
@@ -92,7 +92,7 @@ Lưu ý rằng tệp cấu hình Netplan phải có định dạng YAML và ph�
 
 Tổng thể, **ifupdown** cung cấp một cách đơn giản và linh hoạt để quản lý các giao diện mạng trong các hệ điều hành dựa trên Linux. Tuy nhiên, cần lưu ý rằng các phiên bản mới hơn của Debian và Ubuntu đang chuyển sang sử dụng các công cụ systemd-networkd và netplan để cấu hình mạng.
 
-### Cấu hình interface với địa chỉ IP tĩnh
+### 2.1. Cấu hình interface với địa chỉ IP tĩnh
 
 Để cấu hình một giao diện mạng với địa chỉ IP tĩnh bằng cách sử dụng ifupdown trên hệ điều hành dựa trên Linux, làm theo các bước sau:
 
@@ -104,26 +104,38 @@ Tổng thể, **ifupdown** cung cấp một cách đơn giản và linh hoạt �
 
 ```sh
 iface ens33 inet static
-    address 192.168.126.143
+    address 192.168.126.14
     netmask 255.255.255.0
     gateway 192.168.126.2
 ```
+KQ:
+```sh
+cloud@cloud:~/Desktop$ ip add show ens33
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
+    link/ether 00:0c:29:aa:5e:da brd ff:ff:ff:ff:ff:ff
+    altname enp2s1
+    inet 192.168.126.14/24 brd 192.168.126.255 scope global ens33
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:feaa:5eda/64 scope link 
+       valid_lft forever preferred_lft forever
+```
+
 
 4. Lưu tệp và thoát trình chỉnh sửa văn bản.
 
-5. Khởi động lại dịch vụ mạng để áp dụng các thay đổi bằng cách chạy lệnh sau:
+5. Khởi động lại để áp dụng các thay đổi bằng cách chạy lệnh sau:
 
 ```sh
-sudo systemctl restart networking
+reboot
 ```
 
-Sau khi hoàn thành các bước này, giao diện mạng của bạn sẽ được cấu hình với địa chỉ IP tĩnh, và bạn sẽ có thể kết nối với mạng bằng địa chỉ IP đó.
+Sau khi hoàn thành các bước này, giao diện mạng của bạn sẽ được cấu hình với địa chỉ IP tĩnh, và bạn sẽ có thể kết nối  ới mạng bằng địa chỉ IP đó.
 
 Để thực hiện một số tác vụ khi interface được kích hoạt hoặc khi nó bị tắt, ta có thể thêm các lệnh tương ứng trên các dòng "up" và "down"
 
 ```sh
    iface ens33 inet static
-      address 192.168.126.143
+      address 192.168.126.14
       netmask 255.255.255.0
       gateway 192.168.126.2
       up route add -net 10.0.0.0 netmask 255.0.0.0 gw 192.168.126.3 dev $IFACE
@@ -148,7 +160,7 @@ Ví dụ, gói **resolvconf** bao gồm các tập lệnh cho phép bạn thêm 
 ```
 Đối số `somedomain.org` của tùy chọn **dns-search** tương ứng với đối số của tùy chọn search trong resolv.conf. Các đối số `195.238.2.21` và `195.238.2.22` của tùy chọn **dns-nameservers** tương ứng với các đối số của tùy chọn **nameserver**. Các tùy chọn được công nhận khác bao gồm **dns-domain** và **dns-sortlist**.
 
-### Cấu hình mạng sử dụng DHCP
+### 2.2. Cấu hình mạng sử dụng DHCP
 
 Để cấu hình một giao diện bằng DHCP, ta chỉ cần thay `static` bằng `dhcp` trong cấu hình của interface trong tệp `/etc/network/interfaces`. Ví dụ, nếu ta muốn cấu hình interface `ens33` bằng DHCP, ta sẽ sửa file `/etc/network/interfaces` thành:
 ```sh
@@ -161,7 +173,7 @@ Sau đó lưu file và restart lại network service bằng lệnh:
 ```
 Sau khi kết nối lại, DHCP client sẽ tự động yêu cầu một địa chỉ IP từ DHCP server và cấu hình giao diện theo thông tin nhận được.
 
-### Cấu hình Wifi
+### 2.3. Cấu hình Wifi
 
 Để cấu hình một giao diện Wi-Fi bằng ifupdown, bạn cần thực hiện các bước sau:
 
@@ -189,7 +201,7 @@ Trong đó, `wlp2s0` là tên giao diện Wi-Fi của bạn. Bạn có thể xem
 ```sh
 sudo ifdown wlp2s0 && sudo ifup wlp2s0
 ```
-### Cấu hình PPP interface 
+### 2.4. Cấu hình PPP interface 
 
 Để cấu hình một kết nối **PPP (Point-to-Point Protocol)** sử dụng **ifupdown** trên Linux, bạn có thể thực hiện theo các bước sau:
 
@@ -224,7 +236,7 @@ sudo service networking restart
 
 Sau khi thực hiện xong các bước trên, bạn có thể kiểm tra kết nối PPP của mình bằng lệnh `ifconfig` hoặc `ip addr show`.
 
-### Cấu hình nhiều interface cho một gateway
+### 2.5. Cấu hình nhiều interface cho một gateway
 
 Để cấu hình nhiều giao diện Ethernet cho một gateway trên hệ thống sử dụng ifupdown, bạn có thể làm như sau:
 
@@ -248,8 +260,6 @@ iface eth1 inet static
     gateway 192.168.2.1
 ```
 
-Lưu ý rằng các địa chỉ IP và cấu hình gateway trong ví dụ trên chỉ là minh họa và bạn cần thay đổi để phù hợp với mạng của bạn.
-
 3. Khởi động lại dịch vụ network để áp dụng các thay đổi:
 
 ```sh
@@ -258,7 +268,7 @@ sudo systemctl restart networking.service
 
 Sau đó, các giao diện mạng của bạn sẽ được cấu hình để kết nối với gateway tương ứng.
 
-### Cấu hình Virtual interfaces 
+### 2.6. Cấu hình Virtual interfaces 
 
 Một giao diện ảo là một giao diện mạng ảo được tạo bởi phần mềm và được sử dụng để cung cấp các tính năng mạng bổ sung trên một giao diện mạng vật lý. Trong Linux, chúng ta có thể tạo ra các giao diện ảo bằng cách sử dụng lệnh `ifconfig` hoặc thông qua cấu hình trong `/etc/network/interfaces` khi sử dụng `ifupdown`.
 
@@ -283,9 +293,9 @@ Trong đó:
 
 Ngoài ra, ta cũng có thể sử dụng các loại địa chỉ IP khác như địa chỉ IP động hoặc địa chỉ IP được cấp phát bởi DHCP server.
 
-# CentOS
+# II. CentOS
 
-## ID network interfaces
+## 1. ID network interfaces
 
 Sử dụng lệnh `ip link show` hoặc `ifconfig` để liệt kê tất cả các interface hoạt động trên hệ thống
 
@@ -298,7 +308,7 @@ thetd ~]$ ip link show
 ```
 Thông tin được hiển thị bao gồm tên giao diện, loại giao diện, trạng thái, địa chỉ MAC, MTU (Maximum Transmission Unit), và các thông số khác liên quan đến giao diện mạng.
 
-## Chỉnh sửa file cấu hình IP tĩnh cho card mạng tương ứng
+## 2. Chỉnh sửa file cấu hình IP tĩnh cho card mạng tương ứng
 Để cấu hình IP cho CentOS bằng cách sửa file cấu hình, ta có thể làm như sau:
 
 1. Sử dụng trình soạn thảo để mở file cấu hình network:
@@ -332,11 +342,11 @@ Thông tin được hiển thị bao gồm tên giao diện, loại giao diện,
    sudo systemctl restart network
    ```
 
-## Cấu hình Network bằng nmcli 
+## 3. Cấu hình Network bằng nmcli 
 
 Công cụ **nmcli "Network Manager Command-Line Interface"**. Đây là một công cụ dòng lệnh trên Linux được sử dụng để quản lý mạng thông qua Network Manager, một tiện ích quản lý mạng trên các phiên bản Linux phổ biến. nmcli cung cấp các lệnh để hiển thị, tạo và chỉnh sửa các kết nối mạng, thông tin mạng, cài đặt VPN, tạo các kết nối bridge, bond và VLAN, v.v. nmcli cũng được sử dụng để cấu hình các thông số mạng như địa chỉ IP, subnet mask, gateway và DNS
 
-### Thêm kết nối mạng
+### 3.1. Thêm kết nối mạng
 
 Lệnh **nmcli con add** được sử dụng để thêm các kết nối mạng mới.
 ```sh
@@ -359,17 +369,51 @@ Bạn cũng có thể thêm các thông số cấu hình kết nối như địa
 sudo nmcli connection modify MyEthernet ipv4.addresses 192.168.0.2/24 ipv4.gateway 192.168.0.1 ipv4.dns 8.8.8.8
 ```
 
-### Kiểm soát kết nối mạng
+
+
+### 3.2. Kiểm soát kết nối mạng
 
 - Kiểm tra kết nối: `nmcli con show`
+```sh
+[root@thetd ~]# nmcli con show
+NAME        UUID                                  TYPE      DEVICE
+ens33       04138233-3959-4bb9-b238-9c69e16207e6  ethernet  ens33
+virbr0      ab7df453-34b0-400a-963c-225c8c474659  bridge    virbr0
+MyEthernet  c7d98e5f-527e-43fd-a989-9987038f8fb9  ethernet  --
+```
 - Kích hoạt kết nối mạng: `nmcli con up <tên-kết-nối>`
+```sh
+[root@thetd ~]# nmcli con up MyEthernet
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/4)
+```
 - Ngắt kết nối: `nmcli dev disconnect device <tên-thiết-bị>`
+ ```sh
+ [root@thetd ~]# nmcli dev disconnect device MyEthernet
+Connection reset by 192.168.126.142 port 22
+[root@thetd ~]# nmcli con show
+NAME        UUID                                  TYPE      DEVICE
+ens33       04138233-3959-4bb9-b238-9c69e16207e6  ethernet  ens33
+virbr0      ab7df453-34b0-400a-963c-225c8c474659  bridge    virbr0
+MyEthernet  c7d98e5f-527e-43fd-a989-9987038f8fb9  ethernet  --
+```
 - Sửa đổi cài đặt của một kết nối mạng: `nmcli con mod <tên-kết-nối> <tùy-chọn> <giá-trị>`
     vd `nmcli con mod ens33 ipv4.addresses 192.168.1.100/24 ipv4.gateway 192.168.1.1`
 - Xóa kết nối mạng: `nmcli con del name <tên-kết-nối>`
-- Hiển thị trạng thái: `nmcli dev status`
+```sh
+[root@thetd ~]# nmcli con del name MyEthernet
+Connection 'MyEthernet' (c7d98e5f-527e-43fd-a989-9987038f8fb9) successfully deleted.
+```
 
-## Cấu hình Network bằng nmtui
+- Hiển thị trạng thái: `nmcli dev status`
+```sh
+[root@thetd ~]# nmcli dev status
+DEVICE      TYPE      STATE      CONNECTION
+ens33       ethernet  connected  ens33
+virbr0      bridge    connected  virbr0
+lo          loopback  unmanaged  --
+virbr0-nic  tun       unmanaged  --
+```
+## 4. Cấu hình Network bằng nmtui
 
 **nmtui (NetworkManager Text User Interface)** nhằm cung cấp cho chúng ta một giao diện text cấu hình linh động tương tác với NetworkManager ngay trên Terminal hoặc Console kết nối đến hệ thống thay vì phải dùng lệnh riêng của Network Manager
 
@@ -377,3 +421,10 @@ sudo nmcli connection modify MyEthernet ipv4.addresses 192.168.0.2/24 ipv4.gatew
 nmtui edit <tên-kết-nối>
 ```
 ![](../Linux/img/nmtui.png)
+
+# III. Tài liệu tham khảo
+
+1. https://ubuntu.com/server/docs/network-configuration
+2. https://www.linuxtopia.org/online_books/linux_system_administration/debian_linux_guides/debian_linux_reference_guide/ch-gateway.en_016.html
+3. [Fiona Allen, Marc Kesler, Saumik Paul, Snehangshu Karmakar,
+Victor Costea "Red Hat System Administration I" Red Hat Enterprise Linux 8.0 RH124, 07 May 2019](https://www.redhat.com/en/services/training/rh124-red-hat-system-administration-i)
