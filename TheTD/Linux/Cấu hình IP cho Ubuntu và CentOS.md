@@ -19,7 +19,7 @@ network:
       nameservers:
         addresses: [8.8.8.8, 8.8.4.4]
 ```
-Sửa file `/etc/netplan/ .yaml bằng 2 cách
+Sửa file `/etc/netplan/ .yaml` bằng 2 cách
 - Dùng các công cụ chỉnh sửa như nano, vi, vim,...
 - Dùng lệnh `echo` để chèn nội dung file 
 
