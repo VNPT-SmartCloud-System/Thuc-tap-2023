@@ -161,21 +161,40 @@ Nếu bạn chưa cài đặt ifupdown, khi xóa bỏ netplan hệ thống sẽ 
 
 `rm -rf /usr/share/netplan`
 `rm -rf /etc/netplan`
+6. Chỉnh sửa file cấu hình:
 
+`vim /etc/network/interfaces`
+7. Thêm các dòng sau vào file cấu hình:
+```
+auto lo
+iface lo inet loopback
+
+auto enp0s3
+iface enp0s3 inet static
+address 192.168.3.100
+netmask 255.255.255.0
+gateway 192.168.3.1
+broadcst 192.168.3.255
+dns-nameservers 8.8.8.8 8.8.4.4
+dns-search lan
+```
+![IMG](./IMG/41.png)
+![IMG](./IMG/40.png)
 # ***Tìm hiểu `net plan`***
 
 - Tệp cấu hình mặc định của Netplan nằm trong thư mục `/etc/netplan`.Có thể thấy rằng bằng cách sử dụng lệnh sau:`ls /etc/netplan/`
+![IMG](./IMG/45.png)
 
-![IMG](./IMG/32.png)
 
 - Để xem nội dung của tệp cấu hình mạng Netplan,chạy lệnh sau: `cat /etc/netplan/*.yaml`
-  ![IMG](./IMG/32.png)
+ ![IMG](./IMG/42.png)
 - Để chỉnh sửa tệp cấu hình: `sudo nano /etc/netplan/*.yaml`
+![IMG](./IMG/43.png)
+- Sau khi Cấu hình xong ta sử dụng lệnh sau để cập nhật để chỉ ip lên
 
-  Cấu hình địa chỉ IP tĩnh: 
-![IMG](./IMG/30.png)
-![IMG](./IMG/31.png)
-
+`sudo netplan apply`
+- Sau khi cập nhật ta có thể thấy địa chỉ ip đã được thay đổi
+![IMG](./IMG/44.png)
 
 
 
@@ -183,13 +202,13 @@ Nếu bạn chưa cài đặt ifupdown, khi xóa bỏ netplan hệ thống sẽ 
 <https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-configure-centos-7-network-settings/>
 <https://www.tecmint.com/nmtui-configure-network-connection/>
 <https://www.redhat.com/sysadmin/7-great-network-commands>
-s
+
 
 <https://vietnetwork.vn/routers-switches/cach-cau-hinh-mang-voi-netplan-tren-ubuntu/>
 
 <https://linuxhandbook.com/ifup-ifdown-ifquery/>
 
-
+<https://linuxconfig.org/how-to-configure-static-ip-address-on-ubuntu-18-04-bionic-beaver-linux>
 
 
 
