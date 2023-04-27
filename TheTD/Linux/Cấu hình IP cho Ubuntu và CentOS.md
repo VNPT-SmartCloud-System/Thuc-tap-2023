@@ -366,7 +366,7 @@ Connection 'MyEthernet' (72b86f3e-0c96-4dd2-be7b-94e62637f58e) successfully adde
 ```
 Bạn cũng có thể thêm các thông số cấu hình kết nối như địa chỉ IP, subnet mask, gateway, DNS, v.v. vào lệnh trên bằng cách thêm các tham số tương ứng. Ví dụ, để thêm địa chỉ IP cho kết nối mạng này, bạn có thể sử dụng lệnh sau
 ```sh
-sudo nmcli connection modify MyEthernet ipv4.addresses 192.168.0.2/24 ipv4.gateway 192.168.0.1 ipv4.dns 8.8.8.8
+sudo nmcli connection modify MyEthernet ipv4.addresses 192.168.126.149/24 ipv4.gateway 192.168.126.2 ipv4.dns 8.8.8.8
 ```
 
 
