@@ -423,7 +423,7 @@ Một số cấu hình khác xem trong file cấu hình `/etc/ssh/shd_config`.
 -	Cấu hình SSH client là Mobaxterm : Vào Setting
 
     ![img](./img/ssh22.png)
-    
+
 Tham khảo thêm cấu hình tại đây: https://www.ssh.com/ssh/config/ 
 
 <a name = '4'></a>
@@ -433,3 +433,4 @@ Tham khảo thêm cấu hình tại đây: https://www.ssh.com/ssh/config/
 
 [1] Config SSH: https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys
 
+[2] https://github.com/hocchudong/thuctap012017/tree/master/TamNT/SSH
