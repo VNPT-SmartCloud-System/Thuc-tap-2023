@@ -201,6 +201,25 @@ Các phương thức mã hóa thường được sử dụng trong SSH bao gồm
 
 Quá trình đàm phán mã hóa phiên trong SSH rất quan trọng để đảm bảo tính bảo mật và xác thực cho phiên truy cập. Bằng cách sử dụng phương thức mã hóa mạnh và bảo vệ khóa mã hóa được sử dụng, SSH đảm bảo rằng thông tin truyền qua mạng được bảo vệ khỏi các cuộc tấn công của tin tặc.
 
+## **5. Các trường trong file sshd_config
+
+Trong tệp cấu hình `/etc/ssh/sshd_config`, có nhiều trường (option) khác nhau để cấu hình các thiết lập và tùy chọn cho máy chủ SSH. Dưới đây là một số trường phổ biến và ý nghĩa của chúng:
+
+1. `Port`: Số cổng mà máy chủ SSH lắng nghe để chấp nhận kết nối SSH (mặc định là 22).
+2. `ListenAddress`: Địa chỉ IP mà máy chủ SSH lắng nghe kết nối (mặc định là tất cả các địa chỉ IP trên máy chủ).
+3. `PermitRootLogin`: Xác định liệu phép đăng nhập trực tiếp bằng tài khoản root được phép hay không (có thể là "yes", "no" hoặc "prohibit-password").
+4. `PasswordAuthentication`: Xác định liệu xác thực mật khẩu từ xa được phép hay không (có thể là "yes" hoặc "no").
+5. `PubkeyAuthentication`: Xác định liệu xác thực khóa công khai (public key) từ xa được phép hay không (có thể là "yes" hoặc "no").
+6. `AllowUsers`: Liệt kê danh sách các tên người dùng được phép đăng nhập vào máy chủ SSH.
+7. `DenyUsers`: Liệt kê danh sách các tên người dùng bị từ chối đăng nhập vào máy chủ SSH.
+8. `AllowGroups`: Liệt kê danh sách các nhóm người dùng được phép đăng nhập vào máy chủ SSH.
+9. `DenyGroups`: Liệt kê danh sách các nhóm người dùng bị từ chối đăng nhập vào máy chủ SSH.
+10. `HostKey`: Đường dẫn tới các tệp khóa máy chủ (host key) sử dụng bởi máy chủ SSH.
+11. `LogLevel`: Mức độ chi tiết của các thông báo ghi lại trong các tệp log SSH (có thể là "QUIET", "FATAL", "ERROR", "INFO" hoặc "DEBUG").
+
+Đây chỉ là một số trường cấu hình phổ biến trong tệp `/etc/ssh/sshd_config`. Tùy thuộc vào phiên bản SSH và cấu hình cụ thể của máy chủ SSH, có thể có nhiều trường khác nhau có thể được sử dụng.
+
+![img](./img/ssh26.png)
 # Tài liệu tham khảo
 
 1. https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
