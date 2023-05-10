@@ -188,3 +188,7 @@ chmod -R go= ~/.ssh
 - Nếu đã tạo passphrase thì ở bước này phải nhập thêm passphrase , nếu không thì có thể truy cập được luôn .
 
     ![](./img/ssh37.png)
+
+# Tài liệu tham khảo
+
+https://github.com/danghai1996/thuctapsinh/blob/master/HaiDD/SSH/docs/02-lab_ssh.md
