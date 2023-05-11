@@ -23,8 +23,8 @@ Trước tiên bạn càn truy cập vào trang chủ Ubuntu để tải về fi
 Tạo máy ảo trên môi trường
 
 ### 3.1 Chọn ngôn ngữ
-
+<center>
 ![](../img/u1.png)
+</center>
 
-<img src="../img/u1.png" alt="">
 
