@@ -24,7 +24,9 @@ Tạo máy ảo trên môi trường
 
 ### 3.1 Chọn ngôn ngữ
 <center>
+
 ![](../img/u1.png)
+
 </center>
 
 
