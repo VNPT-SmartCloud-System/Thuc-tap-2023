@@ -26,11 +26,15 @@ Tạo máy ảo trên môi trường
 
 ![](../img/u1.png)
 
-<div style="text-align: center;">
-    <img src="../img/u1.png" alt="">
-</div>
+### 3.2. Chọn Keyboard
 
+Nhấn chọn **Contine without updating**
 
+![](../img/u2.png)
+
+Nhấn chọn **Keyboard** -> **Done**
+
+    ![](../img/u3.png)
 
 
 
