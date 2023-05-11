@@ -26,7 +26,10 @@ Tạo máy ảo trên môi trường
 
 ![](../img/u1.png)
 
-<img src="..\img\u1.png">
+<div style="text-align: center;">
+    <img src="../img/u1.png" alt="">
+</div>
+
 
 
 
