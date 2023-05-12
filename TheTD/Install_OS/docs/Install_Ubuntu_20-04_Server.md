@@ -34,7 +34,36 @@ Nhấn chọn **Contine without updating**
 
 Nhấn chọn **Keyboard** -> **Done**
 
-    ![](../img/u3.png)
+![](../img/u3.png)
+
+### 3.3. Cấu hình card mạng
+
+Bước tiếp theo là cấu hình card mạng (Network Connections). Nếu máy bạn có nhiều card mạng thì cấu hình IP vào đúng tên card mạng. Trên ví dụ chỉ có duy nhất 1 card mạng, bạn bấm **Enter** hoặc ****Space** để ra Menu như hình và chọn **Edit IPv4**
+
+![](../img/u4.png)
+
+Bước này, nếu bạn dùng **DHCP** thì chọn **Automatic (DHCP)** để tự cấp IP, nếu bạn dùng IP tĩnh thì các bạn chuyển từ ục **Automatic (DHCP)**  sang **Manual** và khai báo IP, Subnet, Gateway, DNS như hình dưới. Sau đó nhấn **Save**.
+
+Nhấn **Done**
+
+### 3.4 Cấu hình Proxy
+
+Bạn cần nhập URL và số cổng của proxy nếu bạn đang sử dụng máy chủ proxy hoặc máy chủ bộ đệm apt proxy. Nếu bạn không sử dụng proxy, bạn có thể để trống phần Proxy address. Sau đó nhấn **Done**
+
+![](../img/u5.png)
+
+### 3.5 Cấu hình mirror lưu trữ
+
+Bước này hệ thống sẽ định vị được và chọn cho bạn một mirror gần nhất, có tốc độ mạng nhanh nhất để dễ dàng update phần mềm sau này
+
+![](../img/u6.png)
+
+**Lưu ý**: Chỉ sau khi cấu hình IP ra mạng Internet được mới có thể định vị được
+
+### 3.6. Phân vùng đĩa cài đặt OS
+
+Nếu muốn nhanh chóng, các bạn chỉ cần chọn **Use an
+
 
 
 
