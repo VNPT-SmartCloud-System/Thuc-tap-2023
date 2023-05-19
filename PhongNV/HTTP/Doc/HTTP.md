@@ -90,8 +90,8 @@ Ví dụ về HTTP Response:
 ##### - Status message: Mô tả của Status Code
 ##### - Header: Tiêu đề của Response
 ##### - Body : Chứa tài nguyên
-# ***Cài đặt web server Apache trên CentOS và Ubuntu***
-## ***Cài đặt***
-## ***File log apache: đường dẫn, cấu trúc file log***
+
+
+
 
 
