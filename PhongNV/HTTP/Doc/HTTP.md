@@ -1,17 +1,3 @@
-Tìm hiểu về giao thức HTTP
-1.1. HTTP là gì
-1.2. Các đặc trưng cơ bản của HTTP
-1.3. Cấu trúc cơ bản của HTTP
-1.4. URL
-1.5. Session
-1.6. Proxy
-1.7. HTTP Message
-1.8. Request & Response
-Tìm hiểu về lệnh curl
-Cài đặt web server Apache trên CentOS và Ubuntu
-Cài đặt
-File log apache: đường dẫn, cấu trúc file log
-
 
 # ***Tìm hiểu về giao thức HTTP***
 ## ***HTTP là gì***
@@ -56,6 +42,7 @@ Trong giao thức HTTP, mỗi session bao gồm 3 giai đoạn(bắt tay 3 bư�
 
 Session được lưu trên máy Server. Nó chứa dữ liệu người sử dụng web vào 1 file trên server.
 ## ***Proxy***
+![ima](../IMG/2.png)
 Giữa client và server có rất nhiều các thực thể, nó gọi là các Proxy. Nó thực hiện các hoạt động khác nhau như:
 - `caching`(lưu trữ) : cache có thể là công khai hoặc riêng tư, giống bộ đệm trình duyệt
 - `filtering`(lọc) : như quét virus hoặc kiểm soát
@@ -103,7 +90,6 @@ Ví dụ về HTTP Response:
 ##### - Status message: Mô tả của Status Code
 ##### - Header: Tiêu đề của Response
 ##### - Body : Chứa tài nguyên
-# ***Tìm hiểu về lệnh curl***
 # ***Cài đặt web server Apache trên CentOS và Ubuntu***
 ## ***Cài đặt***
 ## ***File log apache: đường dẫn, cấu trúc file log***
