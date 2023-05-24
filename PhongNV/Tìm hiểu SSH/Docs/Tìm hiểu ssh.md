@@ -118,12 +118,11 @@ trúc sau :
     ```
     # ssh user@[host/IP]
     ```
-
 - Trong đó :
     - `user` : user local trên máy cần ssh
     - `host/IP` : hostname ( VD : `www.xyzdomain.com` ) 
 hoặc IP của máy cần kết nối SSH ( VD : `244.235.23.
 19` )
-
 - Sau khi thực hiện lệnh , máy đầu xa sẽ yêu cầu password 
 của user sử dụng SSH .
+
