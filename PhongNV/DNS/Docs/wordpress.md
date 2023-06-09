@@ -356,3 +356,8 @@ Thêm dòng sau vào file cấu hình
 ![ima](../IMG/49.png)
 
 
+# ***Tài liệu tham khảo***
+<https://computingforgeeks.com/how-to-install-php-7-4-on-centos-7/>
+<https://www.letscloud.io/community/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-7>
+<https://www.letscloud.io/community/how-to-install-wordpress-on-centos-7>
+<https://news.cloud365.vn/cai-dat-wordpress-tren-2-server-bang-centos-7/>
