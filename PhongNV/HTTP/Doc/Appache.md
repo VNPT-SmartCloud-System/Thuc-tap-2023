@@ -1,4 +1,5 @@
 # ***Bước 1: Cài đặt Apache***
+
 - Apache có thể được cài đặt trực tiếp từ repo của Ubuntu. Trước tiên hãy cập nhật index gói local để áp dụng các thay đổi mới nhất (sẽ cần chờ trong thời gian ngắn tùy thuộc các gói cần thiết trạng thái phiên bản từng gói):
 `sudo apt update`
 ![ima](../IMG/10.png)
@@ -13,7 +14,7 @@ Trước khi kiểm tra Apache, bạn cần chỉnh sửa một số cấu hình
 
 Trong quá trình cài đặt, Apache sẽ tự đăng ký một số profile ứng dụng trong UFW để cho phép hoặc chặn quyền truy cập đến Apache qua tường lửa.
 
-  ## ***Bạn có thể dùng lệnh sau để xem các profile `ufw` hiện có:***
+## ***Bạn có thể dùng lệnh sau để xem các profile `ufw` hiện có:***
 
 ```sudo ufw app list```
 ![ima](../IMG/12.png)
@@ -128,8 +129,7 @@ Nếu output là `Syntax OK` thì không có lỗi gì xảy ra.
 ```sudo systemctl restart apache2```
 
 
-
-
+sssss
 
 
 
